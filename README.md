@@ -1,4 +1,4 @@
-# apihteproto
+# APIHTEPROTO
 
 暂时基于 netty 的 Bytebuf 编解码
 
