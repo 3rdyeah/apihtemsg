@@ -1,7 +1,5 @@
 # APIHTEPROTO
 
-暂时基于 netty 的 Bytebuf 编解码
-
 ## 目录、文件说明
 
 - protocol - 配置文件目录
