@@ -4,9 +4,11 @@
 
 ## 目录、文件说明
 
-- xmsg - 逻辑协议定义文件目录
+- protocol - 配置文件目录
 
-- genmsg.bat - 编译 xml 文件，生成逻辑需要的 java 协议文件，从 xmsg 读取，输出到自定义目标目录（具体逻辑查看 bat 文件内容）
+- protocol/xmsg - 逻辑协议定义文件目录
+
+- protocol/genmsg.bat - 编译 xml 文件，生成逻辑需要的 java 协议文件，从 protocol/xmsg 读取，输出到自定义目标目录（具体逻辑查看 bat 文件内容）
 
 ## 逻辑协议的定义
 

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<application name="apihte" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<namespace name="apihte.logic.protocol">
+		<xi:include href="example.xml"/>
+	</namespace>
+</application>
