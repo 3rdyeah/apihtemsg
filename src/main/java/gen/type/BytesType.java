@@ -32,8 +32,8 @@ public class BytesType implements Type {
 		}
 		StringBuilder sb = new StringBuilder();
 		sb.append(String.format("%sif (%s != null && %s.length > 0) {\r\n", prev, name, name));
-		sb.append(String.format("%s\t%s.writeInt(%s.length);\r\n", prev, byteBuf, name));
-		sb.append(String.format("%s\t%s.writeBytes(%s);\r\n", prev, byteBuf, name));
+		sb.append(String.format("%s\t%s.putInt(%s.length);\r\n", prev, byteBuf, name));
+		sb.append(String.format("%s\t%s.put(%s);\r\n", prev, byteBuf, name));
 		sb.append(String.format("%s}", prev));
 		return sb.toString();
 	}
@@ -41,11 +41,16 @@ public class BytesType implements Type {
 	@Override
 	public String decodeCode(String byteBuf, String prev) {
 		StringBuilder sb = new StringBuilder();
-		sb.append(String.format("%sif (%s.readableBytes() > 0) {\r\n", prev, byteBuf));
-		sb.append(String.format("%s\tint %sLen = %s.readInt();\r\n", prev, name, byteBuf));
-		sb.append(String.format("%s\tbyte[] %s = new byte[%sLen];\r\n", prev, name, name));
-		sb.append(String.format("%s\t%s.readBytes(%s);", prev, byteBuf, name));
+		sb.append(String.format("%sif (%s.remaining() > 0) {\r\n", prev, byteBuf));
+		sb.append(String.format("%s\tint %sLen = %s.getInt();\r\n", prev, name, byteBuf));
+		sb.append(String.format("%s\t%s = new byte[%sLen];\r\n", prev, name, name));
+		sb.append(String.format("%s\t%s.get(%s);\r\n", prev, byteBuf, name));
 		sb.append(String.format("%s}", prev));
 		return sb.toString();
+	}
+
+	@Override
+	public int size() {
+		return 0;
 	}
 }

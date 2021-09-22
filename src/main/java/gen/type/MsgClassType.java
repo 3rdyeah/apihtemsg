@@ -40,6 +40,20 @@ public class MsgClassType extends ClassType {
 
 	@Override
 	public String classCode() {
+
+		String variableCode = variableCode();
+		if (!variableCode.equalsIgnoreCase("")) {
+			variableCode = variableCode + "\r\n\r\n";
+		}
+		String setterCode = setterCode();
+		if (!setterCode.equalsIgnoreCase("")) {
+			setterCode = setterCode + "\r\n\r\n";
+		}
+		String getterCode = getterCode();
+		if (!getterCode.equalsIgnoreCase("")) {
+			getterCode = getterCode + "\r\n\r\n";
+		}
+
 		return String.format("package %s;\r\n\r\n", pack) +
 				extImport() +
 				"\r\n" +
@@ -59,17 +73,16 @@ public class MsgClassType extends ClassType {
 				"\r\n\r\n" +
 				CodeFormater._MSG_ID_GETTER +
 				"\r\n\r\n" +
-				variableCode() +
-				"\r\n\r\n" +
-				setterCode() +
-				"\r\n\r\n" +
-				getterCode() +
-				"\r\n\r\n" +
+				variableCode +
+				setterCode +
+				getterCode +
 				CodeFormater._MSG_ENCODE_EXT +
 				"\r\n\r\n" +
 				String.format(CodeFormater._MSG_ENCODE, encodeCode("out", "")) +
 				"\r\n\r\n" +
 				String.format(CodeFormater._MSG_DECODE, decodeCode("in", "")) +
+				"\r\n\r\n" +
+				sizeCode() +
 				"\r\n}\r\n" +
 				CodeFormater._NO_EDIT_END;
 	}

@@ -117,6 +117,15 @@ public class ClassType implements Type {
 		return sb.toString();
 	}
 
+	@Override
+	public int size() {
+		int size = 0;
+		for (Type var : vars) {
+			size += var.size();
+		}
+		return size;
+	}
+
 	public String classCode() {
 		return String.format("package %s;\r\n\r\n", pack) +
 				extImport() +
@@ -136,6 +145,8 @@ public class ClassType implements Type {
 				"\r\n\r\n" +
 				getterCode() +
 				"\r\n\r\n" +
+				sizeCode() +
+				"\r\n\r\n" +
 				"}\r\n" +
 				CodeFormater._NO_EDIT_END;
 	}
@@ -154,5 +165,9 @@ public class ClassType implements Type {
 		} else {
 			return CodeFormater._FUNC_PROCESS;
 		}
+	}
+
+	public String sizeCode() {
+		return String.format(CodeFormater._SIZE, size());
 	}
 }

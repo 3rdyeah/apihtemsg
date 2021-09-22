@@ -35,11 +35,33 @@ public class BasicType implements Type {
 		if (prev == null) {
 			prev = "";
 		}
-		return String.format("%s%s.write%s(%s);", prev, byteBuf, TypeManager.operaType(type), name);
+		return String.format("%s%s.put%s(%s);", prev, byteBuf, TypeManager.operaType(type), name);
 	}
 
 	@Override
 	public String decodeCode(String byteBuf, String prev) {
-		return String.format("%s%s = %s.read%s();", prev, name, byteBuf, TypeManager.operaType(type));
+		return String.format("%s%s = %s.get%s();", prev, name, byteBuf, TypeManager.operaType(type));
+	}
+
+	@Override
+	public int size() {
+		if (type.equalsIgnoreCase("byte")) {
+			return Byte.SIZE;
+		} else if (type.equalsIgnoreCase("short")) {
+			return Short.SIZE;
+		} else if (type.equalsIgnoreCase("int")) {
+			return Integer.SIZE;
+		} else if (type.equalsIgnoreCase("long")) {
+			return Long.SIZE;
+		} else if (type.equalsIgnoreCase("float")) {
+			return Float.SIZE;
+		} else if (type.equalsIgnoreCase("double")) {
+			return Double.SIZE;
+		} else if (type.equalsIgnoreCase("char")) {
+			return Character.SIZE;
+		} else if (type.equalsIgnoreCase("bytes")) {
+			return 0;
+		}
+		return 0;
 	}
 }

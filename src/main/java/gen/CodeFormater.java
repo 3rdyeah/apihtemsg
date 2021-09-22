@@ -7,22 +7,22 @@ package gen;
 public class CodeFormater {
 
 	public static final String _IMPORT_MSG = "import apihte.core.io.msg.Message;\r\n" +
-			"import io.netty.buffer.ByteBuf;";
+			"import java.nio.ByteBuffer;";
 
 	public static final String _MSG_ENCODE_EXT = "\t@Override\r\n" +
-			"\tpublic ByteBuf encode() {\r\n" +
-			"\t\tByteBuf out = getByteBuf();\r\n" +
+			"\tpublic ByteBuffer encode() {\r\n" +
+			"\t\tByteBuffer out = getByteBuffer();\r\n" +
 			"\t\tencode(out);\r\n" +
 			"\t\treturn out;\r\n" +
 			"\t}";
 
 	public static final String _MSG_ENCODE = "\t@Override\r\n" +
-			"\tpublic void encode(ByteBuf out) {\r\n" +
+			"\tpublic void encode(ByteBuffer out) {\r\n" +
 			"%s" +
 			"\t}";
 
 	public static final String _MSG_DECODE = "\t@Override\r\n" +
-			"\tpublic void decode(ByteBuf in) {\r\n" +
+			"\tpublic void decode(ByteBuffer in) {\r\n" +
 			"%s" +
 			"\t}";
 
@@ -36,7 +36,7 @@ public class CodeFormater {
 			"\t * You can only add your code in edit area\r\n" +
 			"\t */";
 
-	public static final String _VAR_BYTEBUF = "\tprivate ByteBuf buffer = Unpooled.buffer(10);";
+	public static final String _VAR_BYTEBUF = "\tprivate ByteBuffer buffer = ByteBuffer.allocate(size());";
 
 	public static final String _NO_EDIT_BEGIN = "// NO EDIT AREA BEGIN!!!";
 	public static final String _NO_EDIT_END = "// NO EDIT AREA END!!!";
@@ -81,4 +81,9 @@ public class CodeFormater {
 	public static String formatSetter(String type, String name) {
 		return String.format(_SETTER, name, type, name, name, name);
 	}
+
+	public static String _SIZE = "\t@Override\r\n" +
+			"\tpublic int size() {\r\n" +
+			"\t\treturn %s;\r\n" +
+			"\t}";
 }

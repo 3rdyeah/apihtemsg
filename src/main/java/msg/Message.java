@@ -2,9 +2,7 @@ package msg;
 
 import java.io.Serializable;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
-import io.netty.channel.Channel;
+import java.nio.ByteBuffer;
 
 /**
  * @author 3rdyeah
@@ -12,29 +10,30 @@ import io.netty.channel.Channel;
  */
 public abstract class Message implements Serializable {
 
-	private ByteBuf byteBuf;
+	private ByteBuffer byteBuffer;
+
+	// Message sender should set it's info to this attribute if need a response from target
 	private Object sender = null;
+
+	// Message sender set receiver info to this attribute
+	// if you have a transit server, transit server can transmit message by this attribute
 	private Object receiver = null;
-	private Channel channel = null;
+
+	// eg. you can set msgParam to a netty.Channel when you recieve a new Message
+	// so that you can response a message by this channel
+	private Object msgParam = null;
 
 	public Message() {
-		this.byteBuf = Unpooled.buffer(10);
+		this.byteBuffer = ByteBuffer.allocate(size());
 	}
 
 	public abstract int getMsgId();
 	public abstract void process();
 
-	public abstract ByteBuf encode();
-	public abstract void encode(ByteBuf out);
-	public abstract void decode(ByteBuf in);
-
-	public void setChannel(Channel channel) {
-		this.channel = channel;
-	}
-
-	public Channel getChannel() {
-		return channel;
-	}
+	public abstract ByteBuffer encode();
+	public abstract void encode(ByteBuffer out);
+	public abstract void decode(ByteBuffer in);
+	public abstract int size();
 
 	public Object getSender() {
 		return sender;
@@ -52,7 +51,15 @@ public abstract class Message implements Serializable {
 		this.receiver = receiver;
 	}
 
-	public ByteBuf getByteBuf() {
-		return byteBuf;
+	public ByteBuffer getByteBuffer() {
+		return byteBuffer;
+	}
+
+	public Object getMsgParam() {
+		return msgParam;
+	}
+
+	public void setMsgParam(Object msgParam) {
+		this.msgParam = msgParam;
 	}
 }

@@ -54,8 +54,10 @@ public class TypeManager {
 		try {
 			if (basic.equalsIgnoreCase("int")) {
 				return "Int";
+			} else if (basic.equalsIgnoreCase("byte")) {
+				return "";
 			} else if (basic.equalsIgnoreCase("bytes")) {
-				return "Bytes";
+				return "";
 			} else {
 				return wrap(basic);
 			}

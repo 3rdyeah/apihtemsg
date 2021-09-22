@@ -10,4 +10,5 @@ public interface Type {
 	String getterCode();
 	String encodeCode(String byteBuf, String prev);
 	String decodeCode(String byteBuf, String prev);
+	int size();
 }

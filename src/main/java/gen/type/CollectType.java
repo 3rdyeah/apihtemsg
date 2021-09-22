@@ -27,4 +27,9 @@ public abstract class CollectType implements Type {
 	public String getterCode() {
 		return CodeFormater.formatGetter(getFullType(), name);
 	}
+
+	@Override
+	public int size() {
+		return 0;
+	}
 }
