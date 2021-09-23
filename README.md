@@ -14,9 +14,11 @@
 
 - namespace 定义包，name 属性定义包名
 
-- msg 定义协议，name 属性定义协议名，id 属性定义协议 id
+- bean 定义普通类，name 属性定义类名
 
-- attr 定义协议字段，name 定义字段名，type 定义类型，根据不同的字段类型又有以下不同属性定义
+- msg 定义协议类，name 属性定义协议类名，id 属性定义协议 id
+
+- attr 定义协议字段，name 属性定义字段名，type 属性定义类型，根据不同的字段类型又有以下不同属性定义
 
     - type 为 bytes，生成 bytes[]
 

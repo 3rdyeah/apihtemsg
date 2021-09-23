@@ -8,7 +8,7 @@ import java.nio.ByteBuffer;
  * @author 3rdyeah
  * created on 2020/4/17 15:49
  */
-public abstract class Message implements Serializable {
+public abstract class Message extends Coder implements Serializable {
 
 	private ByteBuffer byteBuffer;
 

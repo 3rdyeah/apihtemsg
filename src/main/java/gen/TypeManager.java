@@ -2,11 +2,13 @@ package gen;
 
 import gen.type.AListType;
 import gen.type.BasicType;
+import gen.type.BooleanType;
 import gen.type.BytesType;
 import gen.type.ClassType;
 import gen.type.LListType;
 import gen.type.MapType;
 import gen.type.SetType;
+import gen.type.StringType;
 import gen.type.Type;
 import org.dom4j.Element;
 
@@ -16,11 +18,13 @@ import org.dom4j.Element;
  */
 public class TypeManager {
 	public static final int BASIC = 1;
-	public static final int CLASS = 2;
-	public static final int COLLECT_LIST = 3;
-	public static final int COLLECT_SET = 4;
-	public static final int COLLECT_MAP = 5;
-	public static final int BYTES = 5;
+	public static final int BOOLEAN = 2;
+	public static final int STRING = 3;
+	public static final int CLASS = 4;
+	public static final int COLLECT_LIST = 5;
+	public static final int COLLECT_SET = 6;
+	public static final int COLLECT_MAP = 7;
+	public static final int BYTES = 8;
 
 	public static String wrap(String basic) {
 		try {
@@ -40,6 +44,8 @@ public class TypeManager {
 				return "Double";
 			} else if (basic.equalsIgnoreCase("char")) {
 				return "Char";
+			} else if (basic.equalsIgnoreCase("string")) {
+				return "String";
 			} else if (basic.equalsIgnoreCase("bytes")) {
 				return "byte[]";
 			}
@@ -88,6 +94,11 @@ public class TypeManager {
 
 	public static int getTypeId(String typeName) {
 		if (isBasicType(typeName) || isWrapperType(typeName)) {
+			if (isString(typeName)) {
+				return STRING;
+			} else if (isBoolean(typeName)) {
+				return BOOLEAN;
+			}
 			return BASIC;
 		} else if (isList(typeName)) {
 			return COLLECT_LIST;
@@ -111,10 +122,24 @@ public class TypeManager {
 		String attrValue = element.attributeValue("value");
 
 		if (isBasicType(typeName) || isWrapperType(typeName)) {
-			BasicType type = new BasicType();
-			type.type = typeName;
-			type.name = attrName;
-			return type;
+			if (isString(typeName)) {
+				StringType type = new StringType();
+				type.type = "String";
+				type.name = attrName;
+				type.value = "\"\"";
+				return type;
+			} else if (isBoolean(typeName)) {
+				BooleanType type = new BooleanType();
+				type.type = typeName;
+				type.name = attrName;
+				type.value = "false";
+				return type;
+			} else {
+				BasicType type = new BasicType();
+				type.type = typeName;
+				type.name = attrName;
+				return type;
+			}
 		} else if (typeName.equalsIgnoreCase("alist")) {
 			AListType type = new AListType();
 			type.type = attrValue;
@@ -133,8 +158,8 @@ public class TypeManager {
 		} else if (isMap(typeName)) {
 			MapType type = new MapType();
 			type.type = element.attributeValue("key");
-			type.value = attrValue;
 			type.name = attrName;
+			type.value = attrValue;
 			return type;
 		} else if (isBytes(typeName)) {
 			BytesType type = new BytesType();
@@ -166,12 +191,20 @@ public class TypeManager {
 				|| type.equalsIgnoreCase("float")
 				|| type.equalsIgnoreCase("double")
 				|| type.equalsIgnoreCase("char")
-				|| type.equalsIgnoreCase("String");
+				|| type.equalsIgnoreCase("string");
 	}
 
 	public static boolean isList(String type) {
 		return type.equalsIgnoreCase("alist")
 				|| type.equalsIgnoreCase("llist");
+	}
+
+	public static boolean isString(String type) {
+		return type.equalsIgnoreCase("string");
+	}
+
+	public static boolean isBoolean(String type) {
+		return type.equalsIgnoreCase("boolean");
 	}
 
 	public static boolean isBytes(String type) {

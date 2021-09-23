@@ -90,28 +90,28 @@ public class ClassType implements Type {
 	}
 
 	@Override
-	public String encodeCode(String byteBuf, String prev) {
+	public String encodeCode(String bufferName, String prev) {
 		if (prev == null) {
 			prev = "";
 		}
 		StringBuilder sb = new StringBuilder();
 		for (Type var : vars) {
 			String prevTmp = prev + "\t\t";
-			sb.append(var.encodeCode(byteBuf, prevTmp));
+			sb.append(var.encodeCode(bufferName, prevTmp));
 			sb.append("\r\n");
 		}
 		return sb.toString();
 	}
 
 	@Override
-	public String decodeCode(String byteBuf, String prev) {
+	public String decodeCode(String bufferName, String prev) {
 		if (prev == null) {
 			prev = "";
 		}
 		StringBuilder sb = new StringBuilder();
 		for (Type var : vars) {
 			String prevTmp = prev + "\t\t";
-			sb.append(var.decodeCode(byteBuf, prevTmp));
+			sb.append(var.decodeCode(bufferName, prevTmp));
 			sb.append("\r\n");
 		}
 		return sb.toString();
@@ -132,7 +132,8 @@ public class ClassType implements Type {
 				"\r\n" +
 				CodeFormater._NO_EDIT_BEGIN +
 				"\r\n" +
-				String.format("public class %s extends %s {\r\n", name, extclass) +
+				defineClassCode() +
+				"\r\n" +
 				CodeFormater._NO_EDIT_END +
 				"\r\n" +
 				processCode() +
@@ -164,6 +165,14 @@ public class ClassType implements Type {
 			return processCode;
 		} else {
 			return CodeFormater._FUNC_PROCESS;
+		}
+	}
+
+	public String defineClassCode() {
+		if (extclass == null || extclass.equalsIgnoreCase("")) {
+			return String.format("public class %s {", name);
+		} else {
+			return String.format("public class %s extends %s {", name, extclass);
 		}
 	}
 

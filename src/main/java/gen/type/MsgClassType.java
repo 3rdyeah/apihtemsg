@@ -15,24 +15,26 @@ public class MsgClassType extends ClassType {
 
 	@Override
 	public String importCode() {
-		return CodeFormater._IMPORT_MSG;
+		return CodeFormater._IMPORT_MSG +
+				"\r\n" +
+				CodeFormater._IMPORT_BYTEBUFFER;
 	}
 
 	@Override
-	public String encodeCode(String byteBuf, String prev) {
+	public String encodeCode(String bufferName, String prev) {
 		StringBuilder sb = new StringBuilder();
 		for (Type var : vars) {
-			sb.append(var.encodeCode(byteBuf, "\t\t"));
+			sb.append(var.encodeCode(bufferName, "\t\t"));
 			sb.append("\r\n");
 		}
 		return sb.toString();
 	}
 
 	@Override
-	public String decodeCode(String byteBuf, String prev) {
+	public String decodeCode(String bufferName, String prev) {
 		StringBuilder sb = new StringBuilder();
 		for (Type var : vars) {
-			sb.append(var.decodeCode(byteBuf, "\t\t"));
+			sb.append(var.decodeCode(bufferName, "\t\t"));
 			sb.append("\r\n");
 		}
 		return sb.toString();
@@ -61,7 +63,7 @@ public class MsgClassType extends ClassType {
 				"\r\n" +
 				importCode() +
 				"\r\n\r\n" +
-				String.format("public class %s extends %s {", name, extclass) +
+				defineClassCode() +
 				"\r\n" +
 				CodeFormater._NO_EDIT_END +
 				"\r\n" +
@@ -78,8 +80,12 @@ public class MsgClassType extends ClassType {
 				getterCode +
 				CodeFormater._MSG_ENCODE_EXT +
 				"\r\n\r\n" +
+				CodeFormater._OVERRIDE +
+				"\r\n" +
 				String.format(CodeFormater._MSG_ENCODE, encodeCode("out", "")) +
 				"\r\n\r\n" +
+				CodeFormater._OVERRIDE +
+				"\r\n" +
 				String.format(CodeFormater._MSG_DECODE, decodeCode("in", "")) +
 				"\r\n\r\n" +
 				sizeCode() +

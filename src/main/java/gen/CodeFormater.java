@@ -6,8 +6,11 @@ package gen;
  */
 public class CodeFormater {
 
-	public static final String _IMPORT_MSG = "import apihte.core.io.msg.Message;\r\n" +
-			"import java.nio.ByteBuffer;";
+	public static final String _IMPORT_MSG = "import msg.Message;";
+
+	public static final String _IMPORT_CODER = "import msg.Coder;";
+
+	public static final String _IMPORT_BYTEBUFFER = "import java.nio.ByteBuffer;";
 
 	public static final String _MSG_ENCODE_EXT = "\t@Override\r\n" +
 			"\tpublic ByteBuffer encode() {\r\n" +
@@ -16,13 +19,13 @@ public class CodeFormater {
 			"\t\treturn out;\r\n" +
 			"\t}";
 
-	public static final String _MSG_ENCODE = "\t@Override\r\n" +
-			"\tpublic void encode(ByteBuffer out) {\r\n" +
+	public static final String _OVERRIDE = "\t@Override";
+
+	public static final String _MSG_ENCODE = "\tpublic void encode(ByteBuffer out) {\r\n" +
 			"%s" +
 			"\t}";
 
-	public static final String _MSG_DECODE = "\t@Override\r\n" +
-			"\tpublic void decode(ByteBuffer in) {\r\n" +
+	public static final String _MSG_DECODE = "\tpublic void decode(ByteBuffer in) {\r\n" +
 			"%s" +
 			"\t}";
 

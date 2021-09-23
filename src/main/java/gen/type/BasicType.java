@@ -31,16 +31,16 @@ public class BasicType implements Type {
 	}
 
 	@Override
-	public String encodeCode(String byteBuf, String prev) {
+	public String encodeCode(String bufferName, String prev) {
 		if (prev == null) {
 			prev = "";
 		}
-		return String.format("%s%s.put%s(%s);", prev, byteBuf, TypeManager.operaType(type), name);
+		return String.format("%s%s.put%s(%s);", prev, bufferName, TypeManager.operaType(type), name);
 	}
 
 	@Override
-	public String decodeCode(String byteBuf, String prev) {
-		return String.format("%s%s = %s.get%s();", prev, name, byteBuf, TypeManager.operaType(type));
+	public String decodeCode(String bufferName, String prev) {
+		return String.format("%s%s = %s.get%s();", prev, name, bufferName, TypeManager.operaType(type));
 	}
 
 	@Override

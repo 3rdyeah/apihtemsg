@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <namespace name="apihte.logic.example"> <!-- 201~300 -->
 	<msg name="CSendContext" id="201">
-		<attr name="context" type="int"/>
+		<attr name="id" type="int"/>
+		<attr name="context" type="string"/>
+		<attr name="testmap" type="map" key="int" value="string"/>
+		<attr name="testbytes" type="bytes"/>
+		<attr name="testllist" type="llist" value="apihte.logic.example.TestBean"/>
+		<attr name="testalist" type="alist" value="long"/>
+		<attr name="testset" type="set" value="short"/>
 	</msg>
 
 	<msg name="SSendContext" id="202">
 		<attr name="succ" type="boolean"/>
 	</msg>
+
+	<bean name="TestBean">
+		<attr name="id" type="int"/>
+		<attr name="value" type="byte"/>
+	</bean>
 </namespace>

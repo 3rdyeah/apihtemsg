@@ -8,7 +8,7 @@ public interface Type {
 	String variableCode();
 	String setterCode();
 	String getterCode();
-	String encodeCode(String byteBuf, String prev);
-	String decodeCode(String byteBuf, String prev);
+	String encodeCode(String bufferName, String prev);
+	String decodeCode(String bufferName, String prev);
 	int size();
 }
