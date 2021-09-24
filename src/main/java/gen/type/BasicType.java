@@ -14,6 +14,9 @@ public class BasicType implements Type {
 
 	@Override
 	public String variableCode() {
+		if (type.equalsIgnoreCase("string")) {
+			type = "String";
+		}
 		if (value != null && !value.equalsIgnoreCase("")) {
 			return CodeFormater.formatVariableWithValue(type, name, value);
 		}
@@ -35,12 +38,12 @@ public class BasicType implements Type {
 		if (prev == null) {
 			prev = "";
 		}
-		return String.format("%s%s.put%s(%s);", prev, bufferName, TypeManager.operaType(type), name);
+		return String.format("%s%s.write%s(%s);", prev, bufferName, TypeManager.operaType(type), name);
 	}
 
 	@Override
 	public String decodeCode(String bufferName, String prev) {
-		return String.format("%s%s = %s.get%s();", prev, name, bufferName, TypeManager.operaType(type));
+		return String.format("%s%s = %s.read%s();", prev, name, bufferName, TypeManager.operaType(type));
 	}
 
 	@Override

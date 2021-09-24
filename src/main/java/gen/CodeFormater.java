@@ -6,26 +6,24 @@ package gen;
  */
 public class CodeFormater {
 
-	public static final String _IMPORT_MSG = "import msg.Message;";
+	public static final String _IMPORT_MSG = "import io.Message;";
 
-	public static final String _IMPORT_CODER = "import msg.Coder;";
-
-	public static final String _IMPORT_BYTEBUFFER = "import java.nio.ByteBuffer;";
+	public static final String _IMPORT_BINARYBUFFER = "import io.BinaryBuffer;";
 
 	public static final String _MSG_ENCODE_EXT = "\t@Override\r\n" +
-			"\tpublic ByteBuffer encode() {\r\n" +
-			"\t\tByteBuffer out = getByteBuffer();\r\n" +
+			"\tpublic BinaryBuffer encode() {\r\n" +
+			"\t\tBinaryBuffer out = getBuffer();\r\n" +
 			"\t\tencode(out);\r\n" +
 			"\t\treturn out;\r\n" +
 			"\t}";
 
 	public static final String _OVERRIDE = "\t@Override";
 
-	public static final String _MSG_ENCODE = "\tpublic void encode(ByteBuffer out) {\r\n" +
+	public static final String _MSG_ENCODE = "\tpublic void encode(BinaryBuffer out) {\r\n" +
 			"%s" +
 			"\t}";
 
-	public static final String _MSG_DECODE = "\tpublic void decode(ByteBuffer in) {\r\n" +
+	public static final String _MSG_DECODE = "\tpublic void decode(BinaryBuffer in) {\r\n" +
 			"%s" +
 			"\t}";
 
@@ -39,7 +37,7 @@ public class CodeFormater {
 			"\t * You can only add your code in edit area\r\n" +
 			"\t */";
 
-	public static final String _VAR_BYTEBUF = "\tprivate ByteBuffer buffer = ByteBuffer.allocate(size());";
+	public static final String _VAR_BYTEBUF = "\tprivate BinaryBuffer buffer = BinaryBuffer.allocate(size());";
 
 	public static final String _NO_EDIT_BEGIN = "// NO EDIT AREA BEGIN!!!";
 	public static final String _NO_EDIT_END = "// NO EDIT AREA END!!!";

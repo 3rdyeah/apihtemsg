@@ -30,23 +30,12 @@ public class BytesType implements Type {
 		if (prev == null) {
 			prev = "";
 		}
-		StringBuilder sb = new StringBuilder();
-		sb.append(String.format("%sif (%s != null && %s.length > 0) {\r\n", prev, name, name));
-		sb.append(String.format("%s\t%s.putInt(%s.length);\r\n", prev, bufferName, name));
-		sb.append(String.format("%s\t%s.put(%s);\r\n", prev, bufferName, name));
-		sb.append(String.format("%s}", prev));
-		return sb.toString();
+		return String.format("%s%s.writeBytes(%s);", prev, bufferName, name);
 	}
 
 	@Override
 	public String decodeCode(String bufferName, String prev) {
-		StringBuilder sb = new StringBuilder();
-		sb.append(String.format("%sif (%s.remaining() > 0) {\r\n", prev, bufferName));
-		sb.append(String.format("%s\tint %sLen = %s.getInt();\r\n", prev, name, bufferName));
-		sb.append(String.format("%s\t%s = new byte[%sLen];\r\n", prev, name, name));
-		sb.append(String.format("%s\t%s.get(%s);\r\n", prev, bufferName, name));
-		sb.append(String.format("%s}", prev));
-		return sb.toString();
+		return String.format("%s%s = %s.readBytes();", prev, name, bufferName);
 	}
 
 	@Override

@@ -1,16 +1,14 @@
-package msg;
+package io;
 
 import java.io.Serializable;
-
-import java.nio.ByteBuffer;
 
 /**
  * @author 3rdyeah
  * created on 2020/4/17 15:49
  */
-public abstract class Message extends Coder implements Serializable {
+public abstract class Message implements Serializable {
 
-	private ByteBuffer byteBuffer;
+	private BinaryBuffer buffer;
 
 	// Message sender should set it's info to this attribute if need a response from target
 	private Object sender = null;
@@ -24,15 +22,15 @@ public abstract class Message extends Coder implements Serializable {
 	private Object msgParam = null;
 
 	public Message() {
-		this.byteBuffer = ByteBuffer.allocate(size());
+		this.buffer = BinaryBuffer.allocate(size());
 	}
 
 	public abstract int getMsgId();
 	public abstract void process();
 
-	public abstract ByteBuffer encode();
-	public abstract void encode(ByteBuffer out);
-	public abstract void decode(ByteBuffer in);
+	public abstract BinaryBuffer encode();
+	public abstract void encode(BinaryBuffer out);
+	public abstract void decode(BinaryBuffer in);
 	public abstract int size();
 
 	public Object getSender() {
@@ -51,8 +49,8 @@ public abstract class Message extends Coder implements Serializable {
 		this.receiver = receiver;
 	}
 
-	public ByteBuffer getByteBuffer() {
-		return byteBuffer;
+	public BinaryBuffer getBuffer() {
+		return buffer;
 	}
 
 	public Object getMsgParam() {

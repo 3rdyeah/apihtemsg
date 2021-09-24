@@ -8,13 +8,9 @@ import gen.CodeFormater;
  */
 public class BeanType extends ClassType {
 
-	public BeanType() {
-		this.extclass = "Coder";
-	}
-
 	@Override
 	public String importCode() {
-		return CodeFormater._IMPORT_BYTEBUFFER + "\r\n" + CodeFormater._IMPORT_CODER;
+		return CodeFormater._IMPORT_BINARYBUFFER;
 	}
 
 	@Override

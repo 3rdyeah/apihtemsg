@@ -17,7 +17,7 @@ public class MsgClassType extends ClassType {
 	public String importCode() {
 		return CodeFormater._IMPORT_MSG +
 				"\r\n" +
-				CodeFormater._IMPORT_BYTEBUFFER;
+				CodeFormater._IMPORT_BINARYBUFFER;
 	}
 
 	@Override
