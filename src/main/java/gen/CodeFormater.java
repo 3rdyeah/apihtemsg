@@ -66,7 +66,6 @@ public class CodeFormater {
 		return String.format(VAR_WITH_VALUE, type, name, value);
 	}
 
-
 	public static String _GETTER = "\tpublic %s get%s() {\r\n" +
 			"\t\treturn %s;\r\n" +
 			"\t}";
@@ -83,8 +82,7 @@ public class CodeFormater {
 		return String.format(_SETTER, name, type, name, name, name);
 	}
 
-	public static String _SIZE = "\t@Override\r\n" +
-			"\tpublic int size() {\r\n" +
+	public static String _SIZE = "\tpublic int size() {\r\n" +
 			"\t\treturn %s;\r\n" +
 			"\t}";
 }

@@ -123,4 +123,8 @@ public class BinaryBuffer {
 	public int remaining() {
 		return buffer.remaining();
 	}
+
+	public void flip() {
+		buffer.flip();
+	}
 }

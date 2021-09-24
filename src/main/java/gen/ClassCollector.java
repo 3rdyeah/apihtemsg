@@ -114,7 +114,19 @@ public class ClassCollector {
 		String path = rootDir + "/" + classType.pack.replace(".", "/") + "/" + classType.name + ".java";
 
 		File file = new File(path);
-		if (file.exists()) {
+		if (!file.exists()) {
+			try {
+				File parent = file.getParentFile();
+				if (!parent.exists() && !parent.mkdirs()) {
+					throw new RuntimeException("create file failed, make dirs error, file = " + file.getAbsolutePath());
+				}
+				if (!file.createNewFile()) {
+					throw new RuntimeException("create file failed, file = " + file.getAbsolutePath());
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (classType instanceof MsgClassType) {
 			byte[] bytes = new byte[(int)file.length()];
 
 			try (FileInputStream fis = new FileInputStream(file)) {
@@ -130,18 +142,6 @@ public class ClassCollector {
 			classType.extImport = subString(context, CodeFormater._EXT_IMPORT_BEGIN, CodeFormater._EXT_IMPORT_END);
 			if (!classType.extImport.contains("import")) {
 				classType.extImport = null;
-			}
-		} else {
-			try {
-				File parent = file.getParentFile();
-				if (!parent.exists() && !parent.mkdirs()) {
-					throw new RuntimeException("create file failed, make dirs error, file = " + file.getAbsolutePath());
-				}
-				if (!file.createNewFile()) {
-					throw new RuntimeException("create file failed, file = " + file.getAbsolutePath());
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
 		}
 

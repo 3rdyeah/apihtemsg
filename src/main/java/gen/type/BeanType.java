@@ -34,13 +34,4 @@ public class BeanType extends ClassType {
 				"\r\n\r\n" +
 				"}\r\n";
 	}
-
-	@Override
-	public String sizeCode() {
-		return String.format(
-				"\tpublic int size() {\r\n" +
-				"\t\treturn %s;\r\n" +
-				"\t}",
-				size());
-	}
 }

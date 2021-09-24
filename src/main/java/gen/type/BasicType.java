@@ -49,19 +49,19 @@ public class BasicType implements Type {
 	@Override
 	public int size() {
 		if (type.equalsIgnoreCase("byte")) {
-			return Byte.SIZE;
+			return Byte.BYTES;
 		} else if (type.equalsIgnoreCase("short")) {
-			return Short.SIZE;
+			return Short.BYTES;
 		} else if (type.equalsIgnoreCase("int")) {
-			return Integer.SIZE;
+			return Integer.BYTES;
 		} else if (type.equalsIgnoreCase("long")) {
-			return Long.SIZE;
+			return Long.BYTES;
 		} else if (type.equalsIgnoreCase("float")) {
-			return Float.SIZE;
+			return Float.BYTES;
 		} else if (type.equalsIgnoreCase("double")) {
-			return Double.SIZE;
+			return Double.BYTES;
 		} else if (type.equalsIgnoreCase("char")) {
-			return Character.SIZE;
+			return Character.BYTES;
 		} else if (type.equalsIgnoreCase("bytes")) {
 			return 0;
 		}

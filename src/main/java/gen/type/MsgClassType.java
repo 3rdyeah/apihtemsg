@@ -88,6 +88,8 @@ public class MsgClassType extends ClassType {
 				"\r\n" +
 				String.format(CodeFormater._MSG_DECODE, decodeCode("in", "")) +
 				"\r\n\r\n" +
+				CodeFormater._OVERRIDE +
+				"\r\n" +
 				sizeCode() +
 				"\r\n}\r\n" +
 				CodeFormater._NO_EDIT_END;

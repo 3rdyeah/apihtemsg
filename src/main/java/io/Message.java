@@ -7,6 +7,7 @@ import java.io.Serializable;
  * created on 2020/4/17 15:49
  */
 public abstract class Message implements Serializable {
+	private final int MAX_SIZE = 16384;
 
 	private BinaryBuffer buffer;
 
@@ -22,7 +23,7 @@ public abstract class Message implements Serializable {
 	private Object msgParam = null;
 
 	public Message() {
-		this.buffer = BinaryBuffer.allocate(size());
+		this.buffer = BinaryBuffer.allocate(MAX_SIZE);
 	}
 
 	public abstract int getMsgId();
