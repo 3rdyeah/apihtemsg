@@ -20,8 +20,7 @@ jar {
 		configurations.runtime.collect { zipTree(it) }
 	}
 	manifest {
-		attributes 'Can-Redefine-Classes': 'true'
-		attributes 'Main-Class': 'gen.MsgGen'
+		attributes 'Main-Class': 'apihteproto.gen.MsgGen'
 	}
 }
 

@@ -1,13 +1,13 @@
-package gen;
+package apihteproto.gen;
 
-import gen.type.AListType;
-import gen.type.BasicType;
-import gen.type.BytesType;
-import gen.type.ClassType;
-import gen.type.LListType;
-import gen.type.MapType;
-import gen.type.SetType;
-import gen.type.Type;
+import apihteproto.gen.type.AListType;
+import apihteproto.gen.type.BasicType;
+import apihteproto.gen.type.BytesType;
+import apihteproto.gen.type.ClassType;
+import apihteproto.gen.type.LListType;
+import apihteproto.gen.type.MapType;
+import apihteproto.gen.type.SetType;
+import apihteproto.gen.type.Type;
 import org.dom4j.Element;
 
 /**

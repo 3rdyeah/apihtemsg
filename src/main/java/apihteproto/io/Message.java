@@ -1,4 +1,4 @@
-package io;
+package apihteproto.io;
 
 import java.io.Serializable;
 
@@ -33,7 +33,7 @@ public abstract class Message implements Serializable {
 	public BinaryBuffer encode() {
 		BinaryBuffer out = getBuffer();
 		encode(out);
-		return out;
+		return out.compact();
 	}
 
 	public abstract void encode(BinaryBuffer out);

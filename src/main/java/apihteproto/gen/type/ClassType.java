@@ -1,13 +1,13 @@
-package gen.type;
+package apihteproto.gen.type;
 
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
-import gen.CodeFormater;
-import gen.TypeManager;
-import io.Message;
+import apihteproto.gen.CodeFormater;
+import apihteproto.gen.TypeManager;
+import apihteproto.io.Message;
 
 /**
  * @author 3rdyeah

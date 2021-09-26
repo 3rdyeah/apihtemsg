@@ -1,4 +1,4 @@
-package gen;
+package apihteproto.gen;
 
 /**
  * @author 3rdyeah
@@ -6,9 +6,9 @@ package gen;
  */
 public class CodeFormater {
 
-	public static final String _IMPORT_MSG = "import io.Message;";
+	public static final String _IMPORT_MSG = "import apihteproto.io.Message;";
 
-	public static final String _IMPORT_BINARYBUFFER = "import io.BinaryBuffer;";
+	public static final String _IMPORT_BINARYBUFFER = "import apihteproto.io.BinaryBuffer;";
 
 	public static final String _MSG_ENCODE_DEFAULT = "\tpublic BinaryBuffer encode() {\r\n" +
 			"\t\tBinaryBuffer out = getBuffer();\r\n" +

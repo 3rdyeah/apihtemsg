@@ -1,9 +1,9 @@
-package gen;
+package apihteproto.gen;
 
 import java.util.List;
 
-import gen.type.ClassType;
-import gen.type.MsgClassType;
+import apihteproto.gen.type.ClassType;
+import apihteproto.gen.type.MsgClassType;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

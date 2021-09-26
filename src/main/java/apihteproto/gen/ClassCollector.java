@@ -1,12 +1,12 @@
-package gen;
+package apihteproto.gen;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import gen.type.BeanType;
-import gen.type.ClassType;
-import gen.type.MsgClassType;
-import gen.type.Type;
+import apihteproto.gen.type.BeanType;
+import apihteproto.gen.type.ClassType;
+import apihteproto.gen.type.MsgClassType;
+import apihteproto.gen.type.Type;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
