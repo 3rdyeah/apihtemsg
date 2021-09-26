@@ -18,8 +18,9 @@ public class CodeFormater {
 
 	public static final String _OVERRIDE = "\t@Override";
 
-	public static final String _MSG_ENCODE = "\tpublic void encode(BinaryBuffer out) {\r\n" +
+	public static final String _MSG_ENCODE = "\tpublic BinaryBuffer encode(BinaryBuffer out) {\r\n" +
 			"%s" +
+			"\t\treturn out;\r\n" +
 			"\t}";
 
 	public static final String _MSG_DECODE = "\tpublic void decode(BinaryBuffer in) {\r\n" +

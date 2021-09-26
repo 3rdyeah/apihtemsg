@@ -31,12 +31,10 @@ public abstract class Message implements Serializable {
 	public abstract void process();
 
 	public BinaryBuffer encode() {
-		BinaryBuffer out = getBuffer();
-		encode(out);
-		return out.compact();
+		return encode(getBuffer());
 	}
 
-	public abstract void encode(BinaryBuffer out);
+	public abstract BinaryBuffer encode(BinaryBuffer out);
 	public abstract void decode(BinaryBuffer in);
 
 	// if attribute types contain String、array or collection, will set size as MAX_SIZE
