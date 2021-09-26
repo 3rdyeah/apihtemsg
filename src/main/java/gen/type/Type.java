@@ -10,5 +10,7 @@ public interface Type {
 	String getterCode();
 	String encodeCode(String bufferName, String prev);
 	String decodeCode(String bufferName, String prev);
+
+	// if type is String、array or collection, will set size as UNKNOWN_SIZE
 	int size();
 }

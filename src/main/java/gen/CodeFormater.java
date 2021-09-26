@@ -10,8 +10,7 @@ public class CodeFormater {
 
 	public static final String _IMPORT_BINARYBUFFER = "import io.BinaryBuffer;";
 
-	public static final String _MSG_ENCODE_EXT = "\t@Override\r\n" +
-			"\tpublic BinaryBuffer encode() {\r\n" +
+	public static final String _MSG_ENCODE_DEFAULT = "\tpublic BinaryBuffer encode() {\r\n" +
 			"\t\tBinaryBuffer out = getBuffer();\r\n" +
 			"\t\tencode(out);\r\n" +
 			"\t\treturn out;\r\n" +

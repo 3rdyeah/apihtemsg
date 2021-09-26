@@ -7,6 +7,7 @@ import java.util.TreeSet;
 
 import gen.CodeFormater;
 import gen.TypeManager;
+import io.Message;
 
 /**
  * @author 3rdyeah
@@ -121,6 +122,9 @@ public class ClassType implements Type {
 	public int size() {
 		int size = 0;
 		for (Type var : vars) {
+			if (var.size() <= 0) {
+				return -1;
+			}
 			size += var.size();
 		}
 		return size;
@@ -177,6 +181,10 @@ public class ClassType implements Type {
 	}
 
 	public String sizeCode() {
-		return String.format(CodeFormater._SIZE, size());
+		int size = size();
+		if (size <= Message.UNKNOWN_SIZE) {
+			size = Message.MAX_SIZE;
+		}
+		return String.format(CodeFormater._SIZE, size);
 	}
 }

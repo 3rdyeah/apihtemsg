@@ -78,8 +78,6 @@ public class MsgClassType extends ClassType {
 				variableCode +
 				setterCode +
 				getterCode +
-				CodeFormater._MSG_ENCODE_EXT +
-				"\r\n\r\n" +
 				CodeFormater._OVERRIDE +
 				"\r\n" +
 				String.format(CodeFormater._MSG_ENCODE, encodeCode("out", "")) +

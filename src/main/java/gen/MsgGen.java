@@ -20,8 +20,10 @@ public class MsgGen {
 			}
 		}
 
-		ClassCollector collector = new ClassCollector(targetDir);
+		ClassCollector collector = new ClassCollector();
 		collector.collectFromFile(rootFile);
-		collector.gen();
+
+		Genner genner = new Genner(targetDir);
+		genner.gen(collector.getClasses());
 	}
 }
