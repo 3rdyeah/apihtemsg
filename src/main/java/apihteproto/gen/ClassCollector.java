@@ -26,6 +26,11 @@ public class ClassCollector {
 	}
 
 	public void collectFromFile(String path) throws DocumentException {
+		path = path.replace("\\", "/");
+		if (path.endsWith("/")) {
+			path = path.substring(0, path.length() - 1);
+		}
+
 		SAXReader xReader = new SAXReader();
 		Document document = xReader.read(path);
 

@@ -16,6 +16,11 @@ public class Genner {
 	private String targetDir;
 
 	public Genner(String targetDir) {
+		targetDir = targetDir.replace("\\", "/");
+		if (targetDir.endsWith("/")) {
+			targetDir = targetDir.substring(0, targetDir.length() - 1);
+		}
+
 		this.targetDir = targetDir;
 	}
 
