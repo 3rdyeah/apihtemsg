@@ -12,16 +12,10 @@ public abstract class Message implements Serializable {
 
 	private BinaryBuffer buffer;
 
-	// Message sender should set it's info to this attribute if need a response from target
-	private Object sender = null;
-
-	// Message sender set receiver info to this attribute
-	// if you have a transit server, transit server can transmit message by this attribute
-	private Object receiver = null;
-
-	// eg. you can set msgParam to a netty.Channel when you recieve a new Message
+	// Will not encode to buffer
+	// eg. you can set extParam to a netty.Channel when you recieve a new Message
 	// so that you can response a message by this channel
-	private Object msgParam = null;
+	private Object extParam = null;
 
 	public Message() {
 		this.buffer = BinaryBuffer.allocate(size());
@@ -40,31 +34,15 @@ public abstract class Message implements Serializable {
 	// if attribute types contain String、array or collection, will set size as MAX_SIZE
 	public abstract int size();
 
-	public Object getSender() {
-		return sender;
-	}
-
-	public void setSender(Object sender) {
-		this.sender = sender;
-	}
-
-	public Object getReceiver() {
-		return receiver;
-	}
-
-	public void setReceiver(Object receiver) {
-		this.receiver = receiver;
-	}
-
 	public BinaryBuffer getBuffer() {
 		return buffer;
 	}
 
-	public Object getMsgParam() {
-		return msgParam;
+	public Object getExtParam() {
+		return extParam;
 	}
 
-	public void setMsgParam(Object msgParam) {
-		this.msgParam = msgParam;
+	public void setExtParam(Object extParam) {
+		this.extParam = extParam;
 	}
 }
