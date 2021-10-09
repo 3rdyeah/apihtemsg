@@ -41,7 +41,7 @@ public class AListType extends CollectType {
 		if (TypeManager.getTypeId(value) == TypeManager.BASIC) {
 			sb.append(String.format("%s\t%s.write%s(var);", prev, bufferName, TypeManager.operaType(value)));
 		} else if (TypeManager.getTypeId(value) == TypeManager.BYTES) {
-			sb.append(String.format("%s\t%s.writeBytes(var);\r\n", prev, bufferName));
+			sb.append(String.format("%s\t%s.writeBytesWithSize(var);\r\n", prev, bufferName));
 		} else {
 			sb.append(String.format("%s\tvar.encode(%s);", prev, bufferName));
 		}

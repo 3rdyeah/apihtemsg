@@ -102,6 +102,10 @@ public class BinaryBuffer {
 		return this;
 	}
 
+	/**
+	 * read string from buffer, read string length from buffer first
+	 * @return
+	 */
 	public String readString() {
 		int len = buffer.getInt();
 		if (len > 0) {
@@ -111,6 +115,11 @@ public class BinaryBuffer {
 		return null;
 	}
 
+	/**
+	 * write string to buffer, and write string length to buffer first
+	 * @param v
+	 * @return
+	 */
 	public BinaryBuffer writeString(String v) {
 		if (v == null) {
 			buffer.putInt(0);
@@ -130,6 +139,10 @@ public class BinaryBuffer {
 		return v;
 	}
 
+	/**
+	 * read bytes from buffer, read bytes length first
+	 * @return
+	 */
 	public byte[] readBytes() {
 		int size = buffer.getInt();
 		byte[] v = new byte[size];
@@ -137,7 +150,22 @@ public class BinaryBuffer {
 		return v;
 	}
 
+	/**
+	 * direct write bytes to buffer
+	 * @param v
+	 * @return
+	 */
 	public BinaryBuffer writeBytes(byte[] v) {
+		buffer.put(v);
+		return this;
+	}
+
+	/**
+	 * write bytes to buffer, and write bytes len to buffer first
+	 * @param v
+	 * @return
+	 */
+	public BinaryBuffer writeBytesWithSize(byte[] v) {
 		buffer.putInt(v.length);
 		buffer.put(v);
 		return this;

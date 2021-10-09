@@ -30,7 +30,7 @@ public class BytesType implements Type {
 		if (prev == null) {
 			prev = "";
 		}
-		return String.format("%s%s.writeBytes(%s);", prev, bufferName, name);
+		return String.format("%s%s.writeBytesWithSize(%s);", prev, bufferName, name);
 	}
 
 	@Override

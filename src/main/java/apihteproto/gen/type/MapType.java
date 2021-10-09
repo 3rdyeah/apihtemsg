@@ -51,7 +51,7 @@ public class MapType extends CollectType {
 		if (TypeManager.getTypeId(value) == TypeManager.BASIC) {
 			sb.append(String.format("%s\t%s.write%s(entry.getValue());", prev, bufferName, TypeManager.operaType(value)));
 		} else if (TypeManager.getTypeId(value) == TypeManager.BYTES) {
-			sb.append(String.format("%s\t%s.writeBytes(entry.getValue());\r\n", prev, bufferName));
+			sb.append(String.format("%s\t%s.writeBytesWithSize(entry.getValue());\r\n", prev, bufferName));
 		} else {
 			sb.append(String.format("%s\tentry.getValue().encode(%s);", prev, bufferName));
 		}
