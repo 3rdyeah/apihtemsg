@@ -183,7 +183,7 @@ public class ClassType implements Type {
 	public String sizeCode() {
 		int size = size();
 		if (size <= Message.UNKNOWN_SIZE) {
-			size = Message.MAX_SIZE;
+			return String.format(CodeFormater._SIZE, "MAX_SIZE");
 		}
 		return String.format(CodeFormater._SIZE, size);
 	}
