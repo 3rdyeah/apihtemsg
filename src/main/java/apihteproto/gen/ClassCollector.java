@@ -94,7 +94,7 @@ public class ClassCollector {
 		classType.name = className;
 		classType.pack = element.getParent().attributeValue("name");
 
-		List<Element> attr = element.elements("attr");
+		List<Element> attr = element.elements("var");
 		for (Element ele : attr) {
 			Type attrObj = TypeManager.getTypeObj(ele);
 			classType.vars.add(attrObj);

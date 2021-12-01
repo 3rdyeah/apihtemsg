@@ -31,22 +31,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <namespace name="apihte.logic.example"> <!-- 201~300 -->
 	<msg name="CSendContext" id="201">
-		<attr name="id" type="int"/>
-		<attr name="context" type="string"/>
-		<attr name="testmap" type="map" key="int" value="string"/>
-		<attr name="testbytes" type="bytes"/>
-		<attr name="testllist" type="llist" value="apihte.logic.example.TestBean"/>
-		<attr name="testalist" type="alist" value="long"/>
-		<attr name="testset" type="set" value="short"/>
+		<var name="id" type="int"/>
+		<var name="context" type="string"/>
+		<var name="testmap" type="map" key="int" value="string"/>
+		<var name="testbytes" type="bytes"/>
+		<var name="testllist" type="llist" value="apihte.logic.example.TestBean"/>
+		<var name="testalist" type="alist" value="long"/>
+		<var name="testset" type="set" value="short"/>
 	</msg>
 
 	<msg name="SSendContext" id="202">
-		<attr name="succ" type="boolean"/>
+		<var name="succ" type="boolean"/>
 	</msg>
 
 	<bean name="TestBean">
-		<attr name="id" type="int"/>
-		<attr name="value" type="byte"/>
+		<var name="id" type="int"/>
+		<var name="value" type="byte"/>
 	</bean>
 </namespace>
 ```
@@ -65,7 +65,7 @@
 
 - msg 定义协议类，name 属性定义协议类名，id 属性定义协议 id
 
-- attr 定义协议字段，name 属性定义字段名，type 属性定义类型，根据不同的字段类型又有以下不同属性定义
+- var 定义协议字段，name 属性定义字段名，type 属性定义类型，根据不同的字段类型又有以下不同属性定义
 
     - type 为 bytes，生成 bytes[]
 
