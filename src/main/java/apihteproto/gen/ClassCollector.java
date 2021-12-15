@@ -19,10 +19,15 @@ import org.dom4j.io.SAXReader;
  * created on 2021/9/14 18:05
  */
 public class ClassCollector {
+	private String rootPack;
 	private List<ClassType> classes = new LinkedList<>();
 
 	public List<ClassType> getClasses() {
 		return classes;
+	}
+
+	public String getRootPack() {
+		return rootPack;
 	}
 
 	public void collectFromFile(String path) throws DocumentException {
@@ -35,6 +40,9 @@ public class ClassCollector {
 		Document document = xReader.read(path);
 
 		Element root = document.getRootElement();
+		if (rootPack == null) {
+			rootPack = root.element("namespace").attributeValue("name");
+		}
 		collectFromElement(root);
 	}
 

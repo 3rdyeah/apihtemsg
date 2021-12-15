@@ -103,7 +103,7 @@ public class BinaryBuffer {
 	}
 
 	/**
-	 * read string from buffer, read string length from buffer first
+	 * Read string from buffer, read string length from buffer first
 	 * @return
 	 */
 	public String readString() {
@@ -116,7 +116,7 @@ public class BinaryBuffer {
 	}
 
 	/**
-	 * write string to buffer, and write string length to buffer first
+	 * Write string to buffer, and write string length to buffer first
 	 * @param v
 	 * @return
 	 */
@@ -140,7 +140,8 @@ public class BinaryBuffer {
 	}
 
 	/**
-	 * read bytes from buffer, read bytes length first
+	 * Read bytes from buffer, read bytes length first
+	 * if you want read all bytes from buffer, use array()
 	 * @return
 	 */
 	public byte[] readBytes() {
@@ -151,7 +152,7 @@ public class BinaryBuffer {
 	}
 
 	/**
-	 * direct write bytes to buffer
+	 * Direct write bytes to buffer
 	 * @param v
 	 * @return
 	 */
@@ -161,7 +162,7 @@ public class BinaryBuffer {
 	}
 
 	/**
-	 * write bytes to buffer, and write bytes len to buffer first
+	 * Write bytes to buffer, and write bytes len to buffer first
 	 * @param v
 	 * @return
 	 */
@@ -266,5 +267,17 @@ public class BinaryBuffer {
 	@Override
 	public String toString() {
 		return buffer.toString();
+	}
+
+	public final ByteBuffer toByteBuffer() {
+		return buffer;
+	}
+
+	public BinaryBuffer copy(byte[] bytes) {
+		return writeBytes(bytes);
+	}
+
+	public BinaryBuffer copy(BinaryBuffer bf) {
+		return copy(bf.array());
 	}
 }

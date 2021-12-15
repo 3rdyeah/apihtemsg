@@ -23,7 +23,11 @@ public class MsgGen {
 		ClassCollector collector = new ClassCollector();
 		collector.collectFromFile(rootFile);
 
-		Genner genner = new Genner(targetDir);
+		String reflectorPack = collector.getRootPack();
+		if (reflectorPack == null) {
+			throw new RuntimeException("reflector package is null");
+		}
+		Genner genner = new Genner(targetDir, collector.getRootPack());
 		genner.gen(collector.getClasses());
 	}
 }

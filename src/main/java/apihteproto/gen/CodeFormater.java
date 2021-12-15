@@ -85,4 +85,39 @@ public class CodeFormater {
 	public static String _SIZE = "\tpublic int size() {\r\n" +
 			"\t\treturn %s;\r\n" +
 			"\t}";
+
+	public static String CASE_RET = "\t\t\tcase %s: return \"%s\";";
+
+	public static String REFLECTOR = "package %s;\n\n" +
+			"import apihteproto.io.BinaryBuffer;\n" +
+			"import apihteproto.io.Message;\n\n" +
+			"/**\n" +
+			" * AUTOMATIC GENERATION\n" +
+			" * DO NOT EDIT THIS CLASS !!!\n" +
+			" */\n" +
+			"public class MessageReflector {\n\n" +
+			"\tprivate static String className(int msgId) {\n" +
+			"\t\tswitch (msgId) {\n" +
+			"%s" +
+			"\t\t}\n" +
+			"\t\treturn null;\n" +
+			"\t}\n\n" +
+			"\tpublic static Message create(byte[] bytes) throws ClassNotFoundException, InstantiationException, IllegalAccessException {\n" +
+			"\t\tBinaryBuffer in = BinaryBuffer.wrap(bytes);\n" +
+			"\t\tint msgId = in.readInt();\n" +
+			"\t\tif (msgId <= 0) {\n" +
+			"\t\t\treturn null;\n" +
+			"\t\t}\n" +
+			"\t\tin.position(0);\n" +
+			"\n" +
+			"\t\tString className = className(msgId);\n" +
+			"\t\tif (className == null) {\n" +
+			"\t\t\treturn null;\n" +
+			"\t\t}\n" +
+			"\t\tClass<?> clz = Class.forName(className);\n" +
+			"\t\tMessage message = (Message) clz.newInstance();\n" +
+			"\t\tmessage.decode(in);\n" +
+			"\t\treturn message;\n" +
+			"\t}\n" +
+			"}\n";
 }

@@ -23,6 +23,7 @@ public class MsgClassType extends ClassType {
 	@Override
 	public String encodeCode(String bufferName, String prev) {
 		StringBuilder sb = new StringBuilder();
+		sb.append(String.format("\t\t%s.writeInt(MSG_ID);\n", bufferName));
 		for (Type var : vars) {
 			sb.append(var.encodeCode(bufferName, "\t\t"));
 			sb.append("\r\n");
@@ -33,6 +34,7 @@ public class MsgClassType extends ClassType {
 	@Override
 	public String decodeCode(String bufferName, String prev) {
 		StringBuilder sb = new StringBuilder();
+		sb.append(String.format("\t\t%s.readInt();\n", bufferName));
 		for (Type var : vars) {
 			sb.append(var.decodeCode(bufferName, "\t\t"));
 			sb.append("\r\n");
