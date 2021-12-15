@@ -33,11 +33,12 @@
 	<msg name="CSendContext" id="201">
 		<var name="id" type="int"/>
 		<var name="context" type="string"/>
-		<var name="testmap" type="map" key="int" value="string"/>
+		<var name="ismap" type="map" key="int" value="string"/>
+		<var name="ibeanmap" type="map" key="int" value="apihte.logic.example.TestBean"/>
 		<var name="testbytes" type="bytes"/>
-		<var name="testllist" type="llist" value="apihte.logic.example.TestBean"/>
-		<var name="testalist" type="alist" value="long"/>
-		<var name="testset" type="set" value="short"/>
+		<var name="beanllist" type="llist" value="apihte.logic.example.TestBean"/>
+		<var name="longalist" type="alist" value="long"/>
+		<var name="shortset" type="set" value="short"/>
 	</msg>
 
 	<msg name="SSendContext" id="202">
@@ -106,3 +107,19 @@ java -cp apihtecore.jar apihte.util.gen.MsgGen -root "./xmldir/root.xml" -target
 ```
 
 则会从 "./xmldir/root.xml" 目录读取 xml 文件，最后输出 java 文件到 "../src/test/java" 目录
+
+## 协议的编解码
+
+自动生成的协议文件会包含 encode、_encode、decode、_decode 几个方法
+
+encode 为编码方法，会将消息 id 写到最头部。区别于 encode 方法，_encode 方法只写入类的属性，不会在头部写入消息 id 
+
+decode 为解码方法，会先从消息头部取一个 int 类型来获取消息 id。同样，区别于 decode 方法，_decode 方法只解码类的属性，不会在头部取消息 id
+
+没有特殊需求的话，只关注 encode 和 decode 两个方法即可
+
+> 自动生成协议文件的同时，会生成 MessageReflector 类
+> 
+> 编码时直接使用消息对象调用 encode 方法即可
+>
+> 解码时，通过这个 MessageReflector 类的 create 方法，传入 bytes 值，则会解码到正确的消息类
