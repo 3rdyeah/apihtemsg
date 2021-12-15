@@ -43,7 +43,7 @@ public class AListType extends CollectType {
 		} else if (TypeManager.getTypeId(value) == TypeManager.BYTES) {
 			sb.append(String.format("%s\t%s.writeBytesWithSize(var);\r\n", prev, bufferName));
 		} else {
-			sb.append(String.format("%s\tvar.encode(%s);", prev, bufferName));
+			sb.append(String.format("%s\tvar._encode(%s);", prev, bufferName));
 		}
 		sb.append("\r\n");
 		sb.append(prev).append("}");
@@ -70,7 +70,7 @@ public class AListType extends CollectType {
 			sb.append(String.format("%s\tbyte[] value = %s.readBytes();\r\n", prev, bufferName));
 		} else {
 			sb.append(String.format("%s\t%s value = new %s();\r\n", prev, TypeManager.varType(value), value));
-			sb.append(String.format("%s\tvalue.decode(%s);\r\n", prev, bufferName));
+			sb.append(String.format("%s\tvalue._decode(%s);\r\n", prev, bufferName));
 		}
 		sb.append(String.format("%s\t%s.add(value);\r\n", prev, name));
 		sb.append(prev).append("}");

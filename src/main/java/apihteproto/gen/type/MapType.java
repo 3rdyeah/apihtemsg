@@ -44,7 +44,7 @@ public class MapType extends CollectType {
 		if (TypeManager.getTypeId(type) == TypeManager.BASIC) {
 			sb.append(String.format("%s\t%s.write%s(entry.getKey());", prev, bufferName, TypeManager.operaType(type)));
 		} else {
-			sb.append(String.format("%s\tentry.getKey().encode(%s);", prev, bufferName));
+			sb.append(String.format("%s\tentry.getKey()._encode(%s);", prev, bufferName));
 		}
 		sb.append("\r\n");
 
@@ -53,7 +53,7 @@ public class MapType extends CollectType {
 		} else if (TypeManager.getTypeId(value) == TypeManager.BYTES) {
 			sb.append(String.format("%s\t%s.writeBytesWithSize(entry.getValue());\r\n", prev, bufferName));
 		} else {
-			sb.append(String.format("%s\tentry.getValue().encode(%s);", prev, bufferName));
+			sb.append(String.format("%s\tentry.getValue()._encode(%s);", prev, bufferName));
 		}
 		sb.append("\r\n");
 		sb.append(prev).append("}");
@@ -79,7 +79,7 @@ public class MapType extends CollectType {
 			sb.append(String.format("%s\t%s key = %s.read%s();", prev, TypeManager.varType(type), bufferName, TypeManager.operaType(type)));
 		} else {
 			sb.append(String.format("%s\t%s key = new %s();\r\n", prev, TypeManager.varType(type), type));
-			sb.append(String.format("%s\t\tkey.decode(%s);\r\n", prev, bufferName));
+			sb.append(String.format("%s\t\tkey._decode(%s);\r\n", prev, bufferName));
 		}
 		sb.append("\r\n");
 
@@ -89,7 +89,7 @@ public class MapType extends CollectType {
 			sb.append(String.format("%s\tbyte[] value = %s.readBytes();\r\n", prev, bufferName));
 		} else {
 			sb.append(String.format("%s\t%s value = new %s();\r\n", prev, value, value));
-			sb.append(String.format("%s\tvalue.decode(%s);\r\n", prev, bufferName));
+			sb.append(String.format("%s\tvalue._decode(%s);\r\n", prev, bufferName));
 		}
 		sb.append("\r\n");
 		sb.append(String.format("%s\t%s.put(%s, %s);", prev, name, "key", "value"));

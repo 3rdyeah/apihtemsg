@@ -24,14 +24,45 @@ public abstract class Message implements Serializable {
 	public abstract int getMsgId();
 	public abstract void process();
 
+	/**
+	 * Encode whole message, contain msgid
+	 * @return Message buffer
+	 */
 	public BinaryBuffer encode() {
-		return encode(getBuffer());
+		BinaryBuffer buffer = getBuffer();
+		buffer.writeInt(getMsgId());
+		return _encode(getBuffer());
 	}
 
-	public abstract BinaryBuffer encode(BinaryBuffer out);
-	public abstract void decode(BinaryBuffer in);
+	/**
+	 * Encode attributes, without msgid
+	 * @param out Output buffer
+	 * @return Message attributes buffer
+	 */
+	protected abstract BinaryBuffer _encode(BinaryBuffer out);
 
-	// if attribute types contain String、array or collection, will set size as MAX_SIZE
+	/**
+	 * Decode buffer, contain msgid
+	 * @param in You can convert byte[] to BinaryBuffer with BinaryBuffer.wrap(byte[] bytes);
+	 */
+	public void decode(BinaryBuffer in) {
+		int msgId = in.readInt();
+		if (msgId <= 0) {
+			throw new RuntimeException("decode message error, msgid invalid, msgid = " + msgId);
+		}
+		_decode(in);
+	}
+
+	/**
+	 * Decode attributes, without msgid
+	 * @param in Input buffer
+	 */
+	protected abstract void _decode(BinaryBuffer in);
+
+	/**
+	 * If attribute types contain String、array or collection, will set size as MAX_SIZE
+	 * @return Size as byte
+	 */
 	public abstract int size();
 
 	public BinaryBuffer getBuffer() {

@@ -18,12 +18,12 @@ public class CodeFormater {
 
 	public static final String _OVERRIDE = "\t@Override";
 
-	public static final String _MSG_ENCODE = "\tpublic BinaryBuffer encode(BinaryBuffer out) {\r\n" +
+	public static final String _MSG_ENCODE = "\tpublic BinaryBuffer _encode(BinaryBuffer out) {\r\n" +
 			"%s" +
 			"\t\treturn out;\r\n" +
 			"\t}";
 
-	public static final String _MSG_DECODE = "\tpublic void decode(BinaryBuffer in) {\r\n" +
+	public static final String _MSG_DECODE = "\tpublic void _decode(BinaryBuffer in) {\r\n" +
 			"%s" +
 			"\t}";
 
@@ -106,7 +106,7 @@ public class CodeFormater {
 			"\t\tBinaryBuffer in = BinaryBuffer.wrap(bytes);\n" +
 			"\t\tint msgId = in.readInt();\n" +
 			"\t\tif (msgId <= 0) {\n" +
-			"\t\t\treturn null;\n" +
+			"\t\t\tthrow new IllegalAccessException(\"Create message failed, msgid error, msgid = \" + msgId);\n" +
 			"\t\t}\n" +
 			"\t\tin.position(0);\n" +
 			"\n" +
