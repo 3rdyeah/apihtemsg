@@ -118,8 +118,10 @@ decode 为解码方法，会先从消息头部取一个 int 类型来获取消�
 
 没有特殊需求的话，只关注 encode 和 decode 两个方法即可
 
-> 自动生成协议文件的同时，会生成 MessageReflector 类
-> 
-> 编码时直接使用消息对象调用 encode 方法即可
->
-> 解码时，通过这个 MessageReflector 类的 create 方法，传入 bytes 值，则会解码到正确的消息类
+相对于编码可以直接使用 encode 方法，解码时由于需要一个消息 id 到消息类的映射，这样才能在解码到消息 id 时正确的解码对应的消息，这里提供了一个解决方案
+
+- 程序启动时构造一个 apihteproto.io.MessageReflector 对象，将 xml 协议的 root.xml 传递给 MessageReflector 对象的 init 方法
+
+- 接到消息的 bytes 时，将 bytes 传递给 MessageReflector 对象的 create 方法，则会解码到正确的消息类
+
+当然使用者也可以自己使用其他方法做映射，然后通过构造消息类，通过消息类的 decode 方法解码完整消息，这样会更安全

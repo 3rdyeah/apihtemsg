@@ -14,16 +14,14 @@ import java.io.FileOutputStream;
  */
 public class Genner {
 	private final String targetDir;
-	private final String reflectorPack;
 
-	public Genner(String targetDir, String reflectorPack) {
+	public Genner(String targetDir) {
 		targetDir = targetDir.replace("\\", "/");
 		if (targetDir.endsWith("/")) {
 			targetDir = targetDir.substring(0, targetDir.length() - 1);
 		}
 
 		this.targetDir = targetDir;
-		this.reflectorPack = reflectorPack;
 	}
 
 	private void makeJava(ClassType classType) {
@@ -81,38 +79,8 @@ public class Genner {
 		if (classes == null || classes.size() <= 0) {
 			return;
 		}
-		StringBuilder cases = new StringBuilder();
 		for (ClassType aClass : classes) {
 			makeJava(aClass);
-			if (aClass instanceof MsgClassType) {
-				String msgId = ((MsgClassType) aClass).msgId;
-				String className = aClass.pack + "." + aClass.name;
-				cases.append(String.format(CodeFormater.CASE_RET, msgId, className)).append("\n");
-			}
-		}
-
-		String reflectorCode = String.format(CodeFormater.REFLECTOR, reflectorPack, cases);
-		String path = targetDir + "/" + reflectorPack.replace(".", "/") + "/" + "MessageReflector.java";
-		File reflectorFile = new File(path);
-		if (!reflectorFile.exists()) {
-			try {
-				File parent = reflectorFile.getParentFile();
-				if (!parent.exists() && !parent.mkdirs()) {
-					throw new RuntimeException("create file failed, make dirs error, file = " + reflectorFile.getAbsolutePath());
-				}
-				if (!reflectorFile.createNewFile()) {
-					throw new RuntimeException("create file failed, file = " + reflectorFile.getAbsolutePath());
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		try (FileOutputStream fos = new FileOutputStream(reflectorFile)) {
-			fos.write(reflectorCode.getBytes());
-			fos.flush();
-			System.out.println("Output file " + reflectorFile.getPath());
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 }
