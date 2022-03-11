@@ -15,7 +15,9 @@ public class MsgClassType extends ClassType {
 
 	@Override
 	public String importCode() {
-		return CodeFormater._IMPORT_MSG +
+		return CodeFormater._IMPORT_APIHTEPROTO +
+				"\r\n" +
+				CodeFormater._IMPORT_MSG +
 				"\r\n" +
 				CodeFormater._IMPORT_BINARYBUFFER;
 	}
@@ -38,6 +40,10 @@ public class MsgClassType extends ClassType {
 			sb.append("\r\n");
 		}
 		return sb.toString();
+	}
+
+	public String annoCode() {
+		return "@ApihteProto";
 	}
 
 	@Override
@@ -63,6 +69,8 @@ public class MsgClassType extends ClassType {
 				"\r\n" +
 				importCode() +
 				"\r\n\r\n" +
+				annoCode() +
+				"\r\n" +
 				defineClassCode() +
 				"\r\n" +
 				CodeFormater._NO_EDIT_END +
