@@ -6,11 +6,11 @@ import apihteproto.gen.CodeFormater;
  * @author 3rdyeah
  * created on 2021/8/4 18:13
  */
-public class MsgClassType extends ClassType {
+public class ProtoClassType extends ClassType {
 	public String msgId;
 
-	public MsgClassType() {
-		this.extclass = "Message";
+	public ProtoClassType() {
+		this.extclass = "Protocol";
 	}
 
 	@Override
