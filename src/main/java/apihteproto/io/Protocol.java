@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author 3rdyeah
  * created on 2020/4/17 15:49
  */
-public abstract class Message implements Serializable {
+public abstract class Protocol implements Serializable {
 	public static final int UNKNOWN_SIZE = -1;
 	public static final int MAX_SIZE = 16384;
 
@@ -17,7 +17,7 @@ public abstract class Message implements Serializable {
 	// so that you can response a message by this channel
 	private Object extParam = null;
 
-	public Message() {
+	public Protocol() {
 		this.buffer = BinaryBuffer.allocate(size());
 	}
 
