@@ -7,7 +7,7 @@ import java.util.Map;
 import apihteproto.util.ClassFinder;
 import java.lang.reflect.Field;
 
-public class ProtoReflector {
+public class Reflector {
 	private final Map<Integer, String> classes = new HashMap<>();
 	public final ClassFinder.Callback FINDER_CALLBACK = new Classback();
 

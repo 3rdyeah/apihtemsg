@@ -120,6 +120,6 @@ decode 为解码方法，会先从消息头部取一个 int 类型来获取消�
 
 相对于编码可以直接使用 encode 方法，解码时由于需要一个消息 id 到消息类的映射，这样才能在解码到消息 id 时正确的解码对应的消息，这里提供了一个解决方案
 
-- 程序启动时构造一个 apihteproto.io.ProtoReflector 对象，将生成协议的输出目录作为参数传递给 ProtoReflector 对象的 init 方法
+- 程序启动时构造一个 apihteproto.io.Reflector 对象，将生成协议的输出目录作为参数传递给 Reflector 对象的 init 方法
 
-- 接到消息的 bytes 时，将 bytes 传递给 ProtoReflector 对象的 create 方法，则会解码到正确的消息类
+- 接到消息的 bytes 时，将 bytes 传递给 Reflector 对象的 create 方法，则会解码到正确的消息类
