@@ -7,7 +7,7 @@ import java.util.TreeSet;
 
 import apihteproto.gen.CodeFormater;
 import apihteproto.gen.TypeManager;
-import apihteproto.io.Message;
+import apihteproto.io.Protocol;
 
 /**
  * @author 3rdyeah
@@ -182,7 +182,7 @@ public class ClassType implements Type {
 
 	public String sizeCode() {
 		int size = size();
-		if (size <= Message.UNKNOWN_SIZE) {
+		if (size <= Protocol.UNKNOWN_SIZE) {
 			return String.format(CodeFormater._SIZE, "MAX_SIZE");
 		}
 		return String.format(CodeFormater._SIZE, size);

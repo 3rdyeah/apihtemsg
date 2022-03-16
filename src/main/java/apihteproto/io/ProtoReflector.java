@@ -7,7 +7,7 @@ import java.util.Map;
 import apihteproto.util.ClassFinder;
 import java.lang.reflect.Field;
 
-public class Reflector {
+public class ProtoReflector {
 	private final Map<Integer, String> classes = new HashMap<>();
 	public final ClassFinder.Callback FINDER_CALLBACK = new Classback();
 
@@ -18,7 +18,7 @@ public class Reflector {
 				.build();
 	}
 
-	public Message create(byte[] bytes) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+	public Protocol create(byte[] bytes) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		BinaryBuffer in = BinaryBuffer.wrap(bytes);
 		int msgId = in.readInt();
 		if (msgId <= 0) {
@@ -29,9 +29,9 @@ public class Reflector {
 		String className = classes.get(msgId);
 
 		Class<?> clz = Class.forName(className);
-		Message message = (Message) clz.newInstance();
-		message.decode(in);
-		return message;
+		Protocol protocol = (Protocol) clz.newInstance();
+		protocol.decode(in);
+		return protocol;
 	}
 
 	public class Classback implements ClassFinder.Callback {
