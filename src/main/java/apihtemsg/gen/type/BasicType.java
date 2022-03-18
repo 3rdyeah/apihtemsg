@@ -1,7 +1,7 @@
-package apihteproto.gen.type;
+package apihtemsg.gen.type;
 
-import apihteproto.gen.CodeFormater;
-import apihteproto.gen.TypeManager;
+import apihtemsg.gen.CodeFormater;
+import apihtemsg.gen.TypeManager;
 
 /**
  * @author 3rdyeah

@@ -1,16 +1,16 @@
-package apihteproto.gen.type;
+package apihtemsg.gen.type;
 
-import apihteproto.gen.CodeFormater;
+import apihtemsg.gen.CodeFormater;
 
 /**
  * @author 3rdyeah
  * created on 2021/8/4 18:13
  */
-public class ProtoClassType extends ClassType {
+public class MsgClassType extends ClassType {
 	public String msgId;
 
-	public ProtoClassType() {
-		this.extclass = "Protocol";
+	public MsgClassType() {
+		this.extclass = "Message";
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class ProtoClassType extends ClassType {
 	}
 
 	public String annoCode() {
-		return "@ApihteProto";
+		return "@ApihteMsg";
 	}
 
 	@Override

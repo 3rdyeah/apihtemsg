@@ -1,6 +1,6 @@
-package apihteproto.gen.type;
+package apihtemsg.gen.type;
 
-import apihteproto.gen.CodeFormater;
+import apihtemsg.gen.CodeFormater;
 
 /**
  * @author 3rdyeah

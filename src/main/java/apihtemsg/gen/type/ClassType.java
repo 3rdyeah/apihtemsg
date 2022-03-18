@@ -1,13 +1,13 @@
-package apihteproto.gen.type;
+package apihtemsg.gen.type;
 
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
-import apihteproto.gen.CodeFormater;
-import apihteproto.gen.TypeManager;
-import apihteproto.io.Protocol;
+import apihtemsg.gen.CodeFormater;
+import apihtemsg.gen.TypeManager;
+import apihtemsg.io.Message;
 
 /**
  * @author 3rdyeah
@@ -182,7 +182,7 @@ public class ClassType implements Type {
 
 	public String sizeCode() {
 		int size = size();
-		if (size <= Protocol.UNKNOWN_SIZE) {
+		if (size <= Message.UNKNOWN_SIZE) {
 			return String.format(CodeFormater._SIZE, "MAX_SIZE");
 		}
 		return String.format(CodeFormater._SIZE, size);

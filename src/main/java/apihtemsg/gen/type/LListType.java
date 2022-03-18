@@ -1,4 +1,4 @@
-package apihteproto.gen.type;
+package apihtemsg.gen.type;
 
 /**
  * @author 3rdyeah

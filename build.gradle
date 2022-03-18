@@ -20,7 +20,7 @@ jar {
 		configurations.runtime.collect { zipTree(it) }
 	}
 	manifest {
-		attributes 'Main-Class': 'apihteproto.gen.MsgGen'
+		attributes 'Main-Class': 'apihtemsg.gen.MsgGen'
 	}
 }
 

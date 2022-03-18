@@ -1,4 +1,4 @@
-package apihteproto.gen;
+package apihtemsg.gen;
 
 /**
  * @author 3rdyeah
@@ -6,11 +6,11 @@ package apihteproto.gen;
  */
 public class CodeFormater {
 
-	public static final String _IMPORT_APIHTEPROTO = "import apihteproto.io.ApihteProto;";
+	public static final String _IMPORT_APIHTEPROTO = "import apihtemsg.io.ApihteMsg;";
 
-	public static final String _IMPORT_MSG = "import apihteproto.io.Protocol;";
+	public static final String _IMPORT_MSG = "import apihtemsg.io.Message;";
 
-	public static final String _IMPORT_BINARYBUFFER = "import apihteproto.io.BinaryBuffer;";
+	public static final String _IMPORT_BINARYBUFFER = "import apihtemsg.io.BinaryBuffer;";
 
 	public static final String _MSG_ENCODE_DEFAULT = "\tpublic BinaryBuffer encode() {\r\n" +
 			"\t\tBinaryBuffer out = getBuffer();\r\n" +
@@ -91,8 +91,8 @@ public class CodeFormater {
 	public static String CASE_RET = "\t\t\tcase %s: return \"%s\";";
 
 	public static String REFLECTOR = "package %s;\n\n" +
-			"import apihteproto.io.BinaryBuffer;\n" +
-			"import apihteproto.io.Message;\n\n" +
+			"import apihtemsg.io.BinaryBuffer;\n" +
+			"import apihtemsg.io.Message;\n\n" +
 			"/**\n" +
 			" * AUTOMATIC GENERATION\n" +
 			" * DO NOT EDIT THIS CLASS !!!\n" +

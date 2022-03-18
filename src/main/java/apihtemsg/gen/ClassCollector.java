@@ -1,12 +1,12 @@
-package apihteproto.gen;
+package apihtemsg.gen;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import apihteproto.gen.type.BeanType;
-import apihteproto.gen.type.ClassType;
-import apihteproto.gen.type.ProtoClassType;
-import apihteproto.gen.type.Type;
+import apihtemsg.gen.type.BeanType;
+import apihtemsg.gen.type.ClassType;
+import apihtemsg.gen.type.MsgClassType;
+import apihtemsg.gen.type.Type;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -78,7 +78,7 @@ public class ClassCollector {
 		String className = element.attributeValue("name");
 		String qname = element.getQName().getName();
 		if (qname.equalsIgnoreCase("msg")) {
-			ProtoClassType msgType = new ProtoClassType();
+			MsgClassType msgType = new MsgClassType();
 			msgType.msgId = element.attributeValue("id");
 
 			if (msgType.msgId == null || msgType.msgId.equalsIgnoreCase("")) {

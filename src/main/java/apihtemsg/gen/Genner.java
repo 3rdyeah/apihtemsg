@@ -1,9 +1,9 @@
-package apihteproto.gen;
+package apihtemsg.gen;
 
 import java.util.List;
 
-import apihteproto.gen.type.ClassType;
-import apihteproto.gen.type.ProtoClassType;
+import apihtemsg.gen.type.ClassType;
+import apihtemsg.gen.type.MsgClassType;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -40,7 +40,7 @@ public class Genner {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (classType instanceof ProtoClassType) {
+		} else if (classType instanceof MsgClassType) {
 			byte[] bytes = new byte[(int)file.length()];
 
 			try (FileInputStream fis = new FileInputStream(file)) {

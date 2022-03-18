@@ -1,4 +1,4 @@
-package apihteproto.util;
+package apihtemsg.util;
 
 import java.io.File;
 import java.io.FileFilter;

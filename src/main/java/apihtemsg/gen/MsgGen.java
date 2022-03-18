@@ -1,11 +1,11 @@
-package apihteproto.gen;
+package apihtemsg.gen;
 
 /**
  * @author 3rdyeah
  * created on 2021/8/5 10:16
  */
 public class MsgGen {
-	public static String rootFile = "./protocol/xmsg/root.xml";
+	public static String rootFile = "./xml/xmsg/root.xml";
 	public static String targetDir = "./src/main/java";
 
 	public static void main(String[] args) throws Exception {

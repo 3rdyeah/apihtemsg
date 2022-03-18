@@ -1,4 +1,4 @@
-package apihteproto.io;
+package apihtemsg.io;
 
 import java.nio.ByteBuffer;
 

@@ -1,12 +1,12 @@
-# APIHTEPROTO
+# APIHTEMSG
 
 ## 目录、文件说明
 
-- protocol - 配置文件目录
+- xml - 配置文件目录
 
-- protocol/xmsg - 逻辑协议定义文件目录
+- xml/xmsg - 逻辑协议定义文件目录
 
-- protocol/genmsg.bat - 编译 xml 文件，生成逻辑需要的 java 协议文件，从 protocol/xmsg 读取，输出到自定义目标目录（具体逻辑查看 bat 文件内容）
+- xml/genmsg.bat - 编译 xml 文件，生成逻辑需要的 java 协议文件，从 message/xmsg 读取，输出到自定义目标目录（具体逻辑查看 bat 文件内容）
 
 ## 逻辑协议的定义
 
@@ -19,7 +19,7 @@
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <application name="apihte" xmlns:xi="http://www.w3.org/2001/XInclude">
-	<namespace name="apihte.logic.protocol">
+	<namespace name="apihte.logic.message">
 		<xi:include href="example.xml"/>
 	</namespace>
 </application>
@@ -120,6 +120,6 @@ decode 为解码方法，会先从消息头部取一个 int 类型来获取消�
 
 相对于编码可以直接使用 encode 方法，解码时由于需要一个消息 id 到消息类的映射，这样才能在解码到消息 id 时正确的解码对应的消息，这里提供了一个解决方案
 
-- 程序启动时构造一个 apihteproto.io.Reflector 对象，将生成协议的输出目录作为参数传递给 Reflector 对象的 init 方法
+- 程序启动时构造一个 apihtemsg.io.Reflector 对象，将生成协议的输出目录作为参数传递给 Reflector 对象的 init 方法
 
 - 接到消息的 bytes 时，将 bytes 传递给 Reflector 对象的 create 方法，则会解码到正确的消息类

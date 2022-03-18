@@ -1,4 +1,4 @@
-package apihteproto.io;
+package apihtemsg.io;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,5 +7,5 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface ApihteProto {
+public @interface ApihteMsg {
 }

@@ -1,10 +1,10 @@
-package apihteproto.io;
+package apihtemsg.io;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import apihteproto.util.ClassFinder;
+import apihtemsg.util.ClassFinder;
 import java.lang.reflect.Field;
 
 public class Reflector {
@@ -14,11 +14,11 @@ public class Reflector {
 	public void init(String root) {
 		ClassFinder.create()
 				.packige(root)
-				.registry(ApihteProto.class, FINDER_CALLBACK)
+				.registry(ApihteMsg.class, FINDER_CALLBACK)
 				.build();
 	}
 
-	public Protocol create(byte[] bytes) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+	public Message create(byte[] bytes) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		BinaryBuffer in = BinaryBuffer.wrap(bytes);
 		int msgId = in.readInt();
 		if (msgId <= 0) {
@@ -29,16 +29,16 @@ public class Reflector {
 		String className = classes.get(msgId);
 
 		Class<?> clz = Class.forName(className);
-		Protocol protocol = (Protocol) clz.newInstance();
-		protocol.decode(in);
-		return protocol;
+		Message message = (Message) clz.newInstance();
+		message.decode(in);
+		return message;
 	}
 
 	public class Classback implements ClassFinder.Callback {
 		@Override
 		public void callback(Collection<Class<?>> clazzs) {
 			for (Class<?> clazz : clazzs) {
-				if (clazz.getAnnotation(ApihteProto.class) == null) {
+				if (clazz.getAnnotation(ApihteMsg.class) == null) {
 					continue;
 				}
 				try {
