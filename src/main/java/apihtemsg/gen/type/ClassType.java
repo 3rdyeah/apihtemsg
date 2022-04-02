@@ -133,26 +133,28 @@ public class ClassType implements Type {
 	public String classCode() {
 		return String.format("package %s;\r\n\r\n", pack) +
 				extImport() +
-				"\r\n" +
+				"\n" +
 				CodeFormater._NO_EDIT_BEGIN +
-				"\r\n" +
+				"\n" +
 				defineClassCode() +
-				"\r\n" +
+				"\n" +
 				CodeFormater._NO_EDIT_END +
-				"\r\n" +
+				"\n" +
 				processCode() +
-				"\r\n" +
+				"\n" +
 				CodeFormater._NO_EDIT_BEGIN +
-				"\r\n" +
+				"\n" +
 				variableCode() +
-				"\r\n\r\n" +
+				"\n\n" +
 				setterCode() +
-				"\r\n\r\n" +
+				"\n\n" +
 				getterCode() +
-				"\r\n\r\n" +
+				"\n\n" +
+				hashcode() +
+				"\n\n" +
 				sizeCode() +
-				"\r\n\r\n" +
-				"}\r\n" +
+				"\n\n" +
+				"}\n" +
 				CodeFormater._NO_EDIT_END;
 	}
 
@@ -180,11 +182,40 @@ public class ClassType implements Type {
 		}
 	}
 
+	public String hashcode() {
+		if (vars.size() <= 0) {
+			return CodeFormater.HASH_CODE_ZEOR;
+		}
+
+		StringBuilder sb = new StringBuilder();
+		for (Type var : vars) {
+			if (var instanceof BasicType) {
+				String varType = ((BasicType) var).type;
+				String varName = ((BasicType) var).name;
+				if (varType.equalsIgnoreCase("string")) {
+					sb.append("\t\th += ").append(varName).append(".hashCode();\n");
+				} else if (varType.equalsIgnoreCase("boolean")) {
+					sb.append("\t\th += ").append(varName).append(" ? 1 : 0;\n");
+				} else {
+					sb.append("\t\th += ").append(varName).append(";\n");
+				}
+			} else {
+				sb.append("\t\th += ").append(var.getName()).append(".hashCode();\n");
+			}
+		}
+		return String.format(CodeFormater.HASH_CODE, sb);
+	}
+
 	public String sizeCode() {
 		int size = size();
 		if (size <= Message.UNKNOWN_SIZE) {
 			return String.format(CodeFormater._SIZE, "MAX_SIZE");
 		}
 		return String.format(CodeFormater._SIZE, size);
+	}
+
+	@Override
+	public String getName() {
+		return name;
 	}
 }

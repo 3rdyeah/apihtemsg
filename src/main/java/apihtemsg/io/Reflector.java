@@ -9,7 +9,7 @@ import java.lang.reflect.Field;
 
 public class Reflector {
 	private final Map<Integer, String> classes = new HashMap<>();
-	public final ClassFinder.Callback FINDER_CALLBACK = new Classback();
+	public final ClassFinder.Callback FINDER_CALLBACK = new MsgCallback();
 
 	public void init(String root) {
 		ClassFinder.create()
@@ -34,7 +34,7 @@ public class Reflector {
 		return message;
 	}
 
-	public class Classback implements ClassFinder.Callback {
+	public class MsgCallback implements ClassFinder.Callback {
 		@Override
 		public void callback(Collection<Class<?>> clazzs) {
 			for (Class<?> clazz : clazzs) {

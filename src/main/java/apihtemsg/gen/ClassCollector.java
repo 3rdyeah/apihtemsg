@@ -19,7 +19,7 @@ import org.dom4j.io.SAXReader;
  * created on 2021/9/14 18:05
  */
 public class ClassCollector {
-	private List<ClassType> classes = new LinkedList<>();
+	private final List<ClassType> classes = new LinkedList<>();
 
 	public List<ClassType> getClasses() {
 		return classes;

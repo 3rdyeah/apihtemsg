@@ -90,6 +90,19 @@ public class CodeFormater {
 
 	public static String CASE_RET = "\t\t\tcase %s: return \"%s\";";
 
+	public static String HASH_CODE = "\t@Override\n" +
+			"\tpublic int hashCode() {\n" +
+			"\t\tint h = 0;\n" +
+			"%s" +
+			"\t\treturn h;\n" +
+			"\t}";
+
+
+	public static String HASH_CODE_ZEOR = "\t@Override\n" +
+			"\tpublic int hashCode() {\n" +
+			"\t\treturn 0;\n" +
+			"\t}";
+
 	public static String REFLECTOR = "package %s;\n\n" +
 			"import apihtemsg.io.BinaryBuffer;\n" +
 			"import apihtemsg.io.Message;\n\n" +

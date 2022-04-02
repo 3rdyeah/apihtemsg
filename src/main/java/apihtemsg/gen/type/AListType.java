@@ -76,4 +76,9 @@ public class AListType extends CollectType {
 		sb.append(prev).append("}");
 		return sb.toString();
 	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
 }

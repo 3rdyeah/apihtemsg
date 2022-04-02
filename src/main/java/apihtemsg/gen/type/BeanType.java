@@ -30,6 +30,8 @@ public class BeanType extends ClassType {
 				"\r\n\r\n" +
 				String.format(CodeFormater._MSG_DECODE, decodeCode("in", "")) +
 				"\r\n\r\n" +
+				hashcode() +
+				"\r\n\r\n" +
 				sizeCode() +
 				"\r\n\r\n" +
 				"}\r\n";

@@ -67,4 +67,9 @@ public class BasicType implements Type {
 		}
 		return 0;
 	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
 }

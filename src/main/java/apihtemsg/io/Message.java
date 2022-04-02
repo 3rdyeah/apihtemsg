@@ -10,7 +10,7 @@ public abstract class Message implements Serializable {
 	public static final int UNKNOWN_SIZE = -1;
 	public static final int MAX_SIZE = 16384;
 
-	private BinaryBuffer buffer;
+	private final BinaryBuffer buffer;
 
 	// Will not encode to buffer
 	// eg. you can set extParam to a netty.Channel when you recieve a new Message
