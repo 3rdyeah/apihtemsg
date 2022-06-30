@@ -1,13 +1,13 @@
 plugins {
 	id 'java'
+	id 'maven-publish'
 }
 
 group 'org.thirdyeah'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
-
 repositories {
+	mavenLocal()
 	mavenCentral()
 }
 
@@ -16,16 +16,24 @@ tasks.withType(JavaCompile) {
 }
 
 jar {
-	from {
-		configurations.runtime.collect { zipTree(it) }
-	}
 	manifest {
 		attributes 'Main-Class': 'apihtemsg.gen.MsgGen'
 	}
 }
 
 dependencies {
-	compile('org.dom4j:dom4j:2.1.3')
+	implementation 'org.dom4j:dom4j:2.1.3'
+}
+
+publishing {
+	publications {
+		localLib(MavenPublication) {
+			from components.java
+		}
+	}
+	repositories {
+		mavenLocal()
+	}
 }
 
 test {

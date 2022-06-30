@@ -1,5 +1,7 @@
 # APIHTEMSG
 
+项目构建 Gradle 版本使用 7.4.2
+
 ## 目录、文件说明
 
 - xml - 配置文件目录
@@ -100,13 +102,19 @@ xmldir---|
          |---example.xml
 ```
 
-使用的命令行如下：
+- 如果是下载好 jar 包使用命令行，则命令行如下：
 
 ```shell
-java -cp apihtecore.jar apihte.util.gen.MsgGen -root "./xmldir/root.xml" -target "../src/test/java"
+java -cp apihtemsg.jar apihtemsg.gen.MsgGen -root "./xmldir/root.xml" -target "./src/test/java"
 ```
 
-则会从 "./xmldir/root.xml" 目录读取 xml 文件，最后输出 java 文件到 "../src/test/java" 目录
+则会从 "./xmldir/root.xml" 目录读取 xml 文件，最后输出 java 文件到 "./src/test/java" 目录
+
+- 同时提供了 static 方法 gen(String rootXml, String targetDir)，也可以在代码中直接调用 MsgGen.gen 来生成协议类，如下所示
+
+```java
+MsgGen.gen("./xmldir/root.xml", "./src/test/java");
+```
 
 ## 协议的编解码
 
