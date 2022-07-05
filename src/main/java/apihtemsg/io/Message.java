@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author 3rdyeah
  * created on 2020/4/17 15:49
  */
-public abstract class Message implements Serializable {
+public abstract class Message implements Serializable, Runnable {
 	public static final int UNKNOWN_SIZE = -1;
 	public static final int MAX_SIZE = 16384;
 
@@ -23,6 +23,15 @@ public abstract class Message implements Serializable {
 
 	public abstract int getMsgId();
 	public abstract void process();
+
+	@Override
+	public void run() {
+		try {
+			process();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * Encode whole message, contain msgid
