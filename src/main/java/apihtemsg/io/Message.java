@@ -15,7 +15,7 @@ public abstract class Message implements Serializable, Runnable {
 	// Will not encode to buffer
 	// eg. you can set extParam to a netty.Channel when you recieve a new Message
 	// so that you can response a message by this channel
-	private Object extParam = null;
+	transient private Object extParam = null;
 
 	public Message() {
 		this.buffer = BinaryBuffer.allocate(size());
