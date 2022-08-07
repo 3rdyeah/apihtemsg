@@ -38,9 +38,8 @@ public abstract class Message implements Serializable, Runnable {
 	 * @return Message buffer
 	 */
 	public BinaryBuffer encode() {
-		BinaryBuffer buffer = getBuffer();
 		buffer.writeInt(getMsgId());
-		return _encode(getBuffer());
+		return _encode(buffer);
 	}
 
 	/**
