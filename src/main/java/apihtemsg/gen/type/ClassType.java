@@ -184,7 +184,7 @@ public class ClassType implements Type {
 
 	public String hashcode() {
 		if (vars.size() <= 0) {
-			return CodeFormater.HASH_CODE_ZEOR;
+			return CodeFormater.HASH_CODE_ZERO;
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -193,14 +193,14 @@ public class ClassType implements Type {
 				String varType = ((BasicType) var).type;
 				String varName = ((BasicType) var).name;
 				if (varType.equalsIgnoreCase("string")) {
-					sb.append("\t\th += ").append(varName).append(".hashCode();\n");
+					sb.append("\t\th = 31 * h + ").append(varName).append(".hashCode();\n");
 				} else if (varType.equalsIgnoreCase("boolean")) {
-					sb.append("\t\th += ").append(varName).append(" ? 1 : 0;\n");
+					sb.append("\t\th = 31 * h + (").append(varName).append(" ? 1 : 0);\n");
 				} else {
-					sb.append("\t\th += ").append(varName).append(";\n");
+					sb.append("\t\th = 31 * h + ").append(varName).append(";\n");
 				}
 			} else {
-				sb.append("\t\th += ").append(var.getName()).append(".hashCode();\n");
+				sb.append("\t\th = 31 * h + ").append(var.getName()).append(".hashCode();\n");
 			}
 		}
 		return String.format(CodeFormater.HASH_CODE, sb);

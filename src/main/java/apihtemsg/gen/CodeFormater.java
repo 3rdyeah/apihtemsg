@@ -92,13 +92,13 @@ public class CodeFormater {
 
 	public static String HASH_CODE = "\t@Override\n" +
 			"\tpublic int hashCode() {\n" +
-			"\t\tint h = 0;\n" +
+			"\t\tint h = 1;\n" +
 			"%s" +
 			"\t\treturn h;\n" +
 			"\t}";
 
 
-	public static String HASH_CODE_ZEOR = "\t@Override\n" +
+	public static String HASH_CODE_ZERO = "\t@Override\n" +
 			"\tpublic int hashCode() {\n" +
 			"\t\treturn 0;\n" +
 			"\t}";
